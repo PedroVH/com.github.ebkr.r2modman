@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=R2Modman
+Comment=Simple interface for modding games
+Exec=r2modman-run
+Terminal=false
+Type=Application
+Icon=com.github.ebkr.r2modman
+Categories=Game;

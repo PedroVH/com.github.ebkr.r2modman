@@ -1,0 +1,48 @@
+app-id: com.github.ebkr.r2modman
+base: org.electronjs.Electron2.BaseApp
+base-version: '21.08'
+runtime: org.freedesktop.Platform
+runtime-version: '21.08'
+sdk: org.freedesktop.Sdk
+command: r2modman-run
+separate-locales: false
+finish-args:
+  - --socket=x11 # Allows us to create windows
+  - --share=ipc # Necessary for X11
+  - --share=network # Network access
+  - --device=dri # OpenGL rendering
+  - --filesystem=home # Default location for Steam installs
+  - --filesystem=/media # The game could be installed on a SD card (common for SteamDeck)
+  - --filesystem=/mnt # The game could be installled on a secondary drive
+modules:
+  - name: r2modman
+    buildsystem: simple
+    build-commands:
+      - mkdir /app/bin/r2modman
+      # Copy contents of build directory to app directory.
+      # This copies more things then we need but I don't know how to properly reduce that yet
+      - cp --recursive * /app/bin/r2modman/
+      - install -D r2modman-run -t /app/bin
+      - install -Dm644 com.github.ebkr.r2modman.appdata.xml -t /app/share/metainfo
+      - install -Dm644 com.github.ebkr.r2modman.desktop -t /app/share/applications
+      - install -Dm644 com.github.ebkr.r2modman.png -t /app/share/icons/hicolor/512x512/apps
+
+    sources:
+      - type: script
+        dest-filename: r2modman-run
+        commands:
+          # Command that runs when Flatpak gets launched
+          - zypak-wrapper /app/bin/r2modman/r2modman --disable-gpu-sandbox
+      # Desktop files
+      - type: file
+        path: com.github.ebkr.r2modman.desktop
+      # Icon
+      - type: file
+        path: com.github.ebkr.r2modman.png
+      # Appdata XML for Flathub
+      - type: file
+        path: com.github.ebkr.r2modman.appdata.xml
+      # Tar archive
+      - type: archive
+        url: https://github.com/ebkr/r2modmanPlus/releases/download/v3.1.29/r2modman-3.1.29.tar.gz
+        sha256: 6aaf5f2ff1184b2acf300ce17e4ebd1cb15b6bfb1b3e378c441bf43094e7507e

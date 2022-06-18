@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+	<id>com.github.ebkr.r2modman</id>
+	<name>r2modman</name>
+	<metadata_license>CC0-1.0</metadata_license>
+	<project_license>MIT</project_license>
+	<developer_name>ebkr</developer_name>
+	<url type="homepage">https://github.com/ebkr/r2modmanPlus</url>
+	<summary>r2modman is a mod manager</summary>
+	<description>
+		<p>It's quite simple really, a mod manager is an application to make it easier to control which mods you have installed.</p>
+		<p>You can choose to update, enable/disable or even uninstall mods with a simple click, all whilst keeping it available on another profile.</p>
+		<p>Support for Risk of Rain 2, Dyson Sphere Program, Valheim, GTFO, Outward, TaleSpire, H3VR, ROUNDS, Mechanica, Muck, BONEWORKS, Lethal League Blaze, Timberborn, Totally Accurate Battle Simulator, Nickelodeon All-Star Brawl, Inscryption, Starsand, and more.</p>
+	</description>
+	<releases>
+		<release version="3.1.29" date="2022-06-18">
+			<description>
+				<p>Peglin support by @ebkr in #778</p>
+				<p>Added V Rising support by @ebkr in #784</p>
+				<p>Fixed several mod disabling issues and local import install merging issue by @ebkr in #786</p>
+				<p>Removed debug logging by @ebkr in #787</p>
+				<p>Outward de support by @ebkr in #788</p>
+				<p>Upgraded several dependencies by @ebkr in #793</p>
+				<p>fix-for-issue-759 by @lonegamedev in #760</p>
+				<p>Develop by @ebkr in #794</p>
+			</description>
+		</release>
+	</releases>
+	<content_rating type="oars-1.1" />
+</component>
