@@ -1,0 +1,10 @@
+# Flatpak build cache
+.flatpak-builder/
+
+# Build directory
+build-dir/
+
+# Do not include any (temporarily) downloaded AppImage files
+*.AppImage
+# Do not include any (temporarily) downloaded tar archives
+*.tar.gz
