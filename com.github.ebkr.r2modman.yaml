@@ -8,12 +8,15 @@ command: r2modman-run
 separate-locales: false
 finish-args:
   - --socket=x11 # Allows us to create windows
+  - --socket=wayland # Allows us to create windows
   - --share=ipc # Necessary for X11
   - --share=network # Network access
   - --device=dri # OpenGL rendering
-  - --filesystem=home # Default location for Steam installs
+  - --filesystem=home/.var/app/com.valvesoftware.Steam # Default location for flatpak Steam installs
+  - --filesystem=home/.steam/ # Default location for Steam installs
   - --filesystem=/media # The game could be installed on a SD card (common for SteamDeck)
   - --filesystem=/mnt # The game could be installled on a secondary drive
+  - --talk-name=org.freedesktop.Flatpak # launch steam via flatpak --host 
 modules:
   - name: r2modman
     buildsystem: simple
@@ -44,5 +47,4 @@ modules:
         path: com.github.ebkr.r2modman.appdata.xml
       # Tar archive
       - type: archive
-        url: https://github.com/ebkr/r2modmanPlus/releases/download/v3.1.29/r2modman-3.1.29.tar.gz
-        sha256: 6aaf5f2ff1184b2acf300ce17e4ebd1cb15b6bfb1b3e378c441bf43094e7507e
+        path: r2modman-3.1.29.tar.gz
