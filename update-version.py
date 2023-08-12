@@ -16,14 +16,19 @@ import urllib.request
 # Pre-defined values
 REPO_API_RELEASE_URL = "https://api.github.com/repos/ebkr/r2modmanPlus/releases/latest"
 FLATPACK_MANIFEST_NAME = "com.github.ebkr.r2modman.yaml"
+FLATPACK_APPDATA_NAME = "com.github.ebkr.r2modman.appdata.xml"
 
 
 # Get JSON object containing info about all releases
 api_response = urllib.request.urlopen(REPO_API_RELEASE_URL).read()
+response_json = json.loads(api_response)
 
-# Get version number of newest release
-release_version = json.loads(api_response)["tag_name"].replace("v", "")
-print(f"Newest version is: {release_version}")
+# Get content of newest release
+release_version = response_json["tag_name"].replace("v", "")
+release_date = response_json["published_at"].split("T")[0]
+release_body = response_json["body"]
+release_changes = release_body.split("##")[1]
+print(f"Newest version is {release_version} published in {release_date}")
 
 # The part of the JSON object that refers to the tar archive
 tar_object = [x for x in json.loads(
@@ -60,5 +65,24 @@ file_content = re.sub(r"sha256: [0-9a-fA-F]+", f"sha256: {release_checksum}", fi
 with open(FLATPACK_MANIFEST_NAME, "wt") as f:
     f.write(file_content)
 
+
+# Read appdata.xml
+with open(FLATPACK_APPDATA_NAME, "rt") as f:
+    file_content = f.read()
+
+file_content = file_content.split("<release version=")[0] + "%RELEASE%" + file_content.split("</release>")[1]
+
+new_release = (f"<release version=\"{release_version}\" date=\"{release_date}\">\n"
+               f"\t\t\t<description>")
+for change in release_changes.split("\r\n* "):
+    change = change.replace("\r", "").replace("\n", "")
+    new_release = f"{new_release}\n\t\t\t\t<p>{change}</p>"
+new_release = f"{new_release} \n\t\t\t</description>\n\t\t</release>"
+
+file_content = file_content.replace("%RELEASE%", new_release)
+
+# Write back updated content
+with open(FLATPACK_APPDATA_NAME, "wt") as f:
+    f.write(file_content)
+
 print("Done")
-print("Don't forget to manually update the AppData XML (com.github.ebkr.r2modman.appdata.xml) !")

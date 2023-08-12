@@ -13,16 +13,20 @@
 		<p>Support for Risk of Rain 2, Dyson Sphere Program, Valheim, GTFO, Outward, TaleSpire, H3VR, ROUNDS, Mechanica, Muck, BONEWORKS, Lethal League Blaze, Timberborn, Totally Accurate Battle Simulator, Nickelodeon All-Star Brawl, Inscryption, Starsand, and more.</p>
 	</description>
 	<releases>
-		<release version="3.1.29" date="2022-06-18">
+		<release version="3.1.42" date="2023-05-26">
 			<description>
-				<p>Peglin support by @ebkr in #778</p>
-				<p>Added V Rising support by @ebkr in #784</p>
-				<p>Fixed several mod disabling issues and local import install merging issue by @ebkr in #786</p>
-				<p>Removed debug logging by @ebkr in #787</p>
-				<p>Outward de support by @ebkr in #788</p>
-				<p>Upgraded several dependencies by @ebkr in #793</p>
-				<p>fix-for-issue-759 by @lonegamedev in #760</p>
-				<p>Develop by @ebkr in #794</p>
+				<p> What's Changed</p>
+				<p>Sort the profile list by @MythicManiac in https://github.com/ebkr/r2modmanPlus/pull/1005</p>
+				<p>save and restore editor selection on model update by @sheybey in https://github.com/ebkr/r2modmanPlus/pull/1009</p>
+				<p>Add five games by @Oksamies in https://github.com/ebkr/r2modmanPlus/pull/1016</p>
+				<p>Add three games AND Fix Shadows Over Loathing autodiscovery bug by @Oksamies in https://github.com/ebkr/r2modmanPlus/pull/1024</p>
+				<p>Added yml/yaml file support to the config editor by @ebkr in https://github.com/ebkr/r2modmanPlus/pull/1021</p>
+				<p>Add skul-specific bepinex package by @MythicManiac in https://github.com/ebkr/r2modmanPlus/pull/1025</p>
+				<p>Newly select data directories can be reselected at a later date by @ebkr in https://github.com/ebkr/r2modmanPlus/pull/1026</p>
+				<p>Update modExclusions.md by @MythicManiac in https://github.com/ebkr/r2modmanPlus/pull/1022</p>
+				<p>Fixed issues with MelonLoader not generating relevant assemblies by @ebkr in https://github.com/ebkr/r2modmanPlus/pull/1027</p>
+				<p>Updated README and versions by @ebkr in https://github.com/ebkr/r2modmanPlus/pull/1028</p>
+				<p>Develop by @ebkr in https://github.com/ebkr/r2modmanPlus/pull/1029</p> 
 			</description>
 		</release>
 	</releases>
