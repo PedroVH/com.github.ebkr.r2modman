@@ -14,7 +14,7 @@ import json
 import urllib.request
 
 # Pre-defined values
-REPO_API_RELEASE_URL = "https://github.com/ebkr/r2modmanPlus/releases/latest"
+REPO_API_RELEASE_URL = "https://api.github.com/repos/ebkr/r2modmanPlus/releases/latest"
 FLATPACK_MANIFEST_NAME = "com.github.ebkr.r2modman.yaml"
 
 

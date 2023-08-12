@@ -47,4 +47,4 @@ modules:
         path: com.github.ebkr.r2modman.appdata.xml
       # Tar archive
       - type: archive
-        path: r2modman-3.1.29.tar.gz
+        path: r2modman-3.1.42.tar.gz
