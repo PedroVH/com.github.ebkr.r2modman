@@ -6,6 +6,28 @@ runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
 command: r2modman-run
 separate-locales: false
+
+add-extensions:
+  org.freedesktop.Platform.Compat.i386:
+    directory: lib/i386-linux-gnu
+    version: '21.08'
+  # This is not strictly required, but needed for debugging 32-bit programs
+  org.freedesktop.Platform.Compat.i386.Debug:
+    directory: lib/debug/lib/i386-linux-gnu
+    version: '21.08'
+    no-autodownload: true
+  org.freedesktop.Platform.GL32:
+    directory: lib/i386-linux-gnu/GL
+    version: '1.4'
+    versions: 21.08;1.4
+    subdirectories: true
+    no-autodownload: true
+    autodelete: false
+    add-ld-path: lib
+    merge-dirs: vulkan/icd.d;glvnd/egl_vendor.d;OpenCL/vendors;lib/dri;lib/d3d;vulkan/explicit_layer.d;vulkan/implicit_layer.d
+    download-if: active-gl-driver
+    enable-if: active-gl-driver
+
 finish-args:
   - --socket=x11 # Allows us to create windows
   - --socket=wayland # Allows us to create windows
@@ -16,12 +38,15 @@ finish-args:
   - --filesystem=home/.steam/ # Default location for Steam installs
   - --filesystem=/media # The game could be installed on a SD card (common for SteamDeck)
   - --filesystem=/mnt # The game could be installled on a secondary drive
-  - --talk-name=org.freedesktop.Flatpak # launch steam via flatpak --host 
+  - --talk-name=org.freedesktop.Flatpak # launch steam via flatpak --host
+
 modules:
   - name: r2modman
     buildsystem: simple
     build-commands:
-      - mkdir /app/bin/r2modman
+      - mkdir -p /app/bin/r2modman
+      - mkdir -p /app/lib/i386-linux-gnu/GL
+      - mkdir -p /app/debug/lib/i386-linux-gnu
       # Copy contents of build directory to app directory.
       # This copies more things then we need but I don't know how to properly reduce that yet
       - cp --recursive * /app/bin/r2modman/
@@ -36,6 +61,12 @@ modules:
         commands:
           # Command that runs when Flatpak gets launched
           - zypak-wrapper /app/bin/r2modman/r2modman --disable-gpu-sandbox
+      # Dll
+      - type: inline
+        dest-filename: ld.so.conf
+        contents: |
+          /app/lib32
+          /app/lib/i386-linux-gnu
       # Desktop files
       - type: file
         path: com.github.ebkr.r2modman.desktop
