@@ -13,3 +13,5 @@ export/
 *.AppImage
 # Do not include any (temporarily) downloaded tar archives
 *.tar.gz
+# Do not include single-file flatpak bundle
+*.flatpak

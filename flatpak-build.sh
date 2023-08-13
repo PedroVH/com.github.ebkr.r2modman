@@ -4,8 +4,8 @@
 echo ':: copying latest build to directory...'
 cp ../r2modmanPlus/dist/electron/Packaged/*.tar.gz . &&
 #updates manifest and appdata.xml
-#echo ':: updating manifest...' &&
-#python3 update-version.py &&
+echo ':: updating manifest...' &&
+python3 update-version.py &&
 
 #build the Flatpak
 echo ':: building flatpak' &&
